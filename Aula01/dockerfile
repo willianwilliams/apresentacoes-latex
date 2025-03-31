@@ -1,0 +1,17 @@
+FROM texlive/texlive:latest
+
+# Apenas os pacotes realmente necessários (e disponíveis)
+RUN tlmgr update --self && tlmgr install \
+    beamer \
+    fontawesome5 \
+    latexmk \
+    babel \
+    xcolor \
+    booktabs \
+    amsmath \
+    hyperref \
+    graphics
+
+WORKDIR /docs
+
+CMD ["latexmk", "-pdf", "main.tex"]
